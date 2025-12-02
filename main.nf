@@ -30,9 +30,9 @@ workflow {
                                     """)
                           }
                           .map { dir ->
-                              // Extract sample name and pair with directory and model type
                               def sample_name = dir.name
-                              return tuple(sample_name, dir, "multimer")
+                              // Return: sample_name, feature_dir, fasta_file (dummy), preset
+                              return tuple(sample_name, dir, file("${dir}/*.fasta").first(), "multimer")
                           }
     
     Channel.from(params.model_indices.split(',').toList())
