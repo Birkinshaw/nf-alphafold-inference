@@ -31,8 +31,9 @@ workflow {
                           }
                           .map { dir ->
                               def sample_name = dir.name
-                              // Return: sample_name, feature_dir, fasta_file (dummy), preset
-                              return tuple(sample_name, dir, file("${dir}/*.fasta").first(), "multimer")
+                              // Create a dummy file object with the expected FASTA name
+                              def fasta_file = file("${dir}/${sample_name}.fasta")
+                              return tuple(sample_name, dir, fasta_file, "multimer")
                           }
     
     Channel.from(params.model_indices.split(',').toList())
