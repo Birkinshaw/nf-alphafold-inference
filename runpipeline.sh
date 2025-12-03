@@ -1,4 +1,4 @@
 #!/bin/bash
 module purge
-module load nextflow/24.04.2
+module load nextflow/25.10.0
 nextflow run main.nf -profile milton debug
