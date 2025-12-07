@@ -12,6 +12,7 @@ println " Required Pipeline parameters                        "
 println "-----------------------------------------------------"
 println "Input  Directory   : $params.inputdir                "
 println "Output Directory   : $params.outdir                  " 
+println "Fasta Directory    : $params.fastadir                "
 println "*****************************************************"
 
 
@@ -31,8 +32,8 @@ workflow {
                           }
                           .map { dir ->
                               def sample_name = dir.name
-                              // Create a dummy file object with the expected FASTA name
-                              def fasta_file = file("${dir}/${sample_name}.fasta")
+                              // find the appropriate fasta file
+                              def fasta_file = file("${params.fastadir}/${sample_name}.fasta")
                               return tuple(sample_name, dir, fasta_file, "multimer")
                           }
     
