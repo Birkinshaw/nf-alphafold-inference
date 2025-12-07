@@ -12,7 +12,8 @@
             "description": "Define where the pipeline should find input data and save output data.",
             "required": [
                 "outdir",
-                "inputdir"
+                "inputdir",
+                "fastadir"
             ],
             "properties": {
                 "outdir": {
@@ -22,6 +23,11 @@
                     "fa_icon": "fas fa-folder-open"
                 },
                 "inputdir": {
+                    "type": "string",
+                    "default": "/vast/scratch/users/iskander.j/nf-alphafold/example/af_test232",
+                    "description": "The directory where features output directories reside"
+                },
+                "fastadir": {
                     "type": "string",
                     "default": "/vast/scratch/users/iskander.j/nf-alphafold/example/af_test232",
                     "description": "The directory where fasta files to be folded reside"
@@ -50,7 +56,7 @@
                 },
                 "num_predictions": {
                     "type": "integer",
-                    "default": 2
+                    "default": 1
                 },
                 "database_preset": {
                     "type": "string",
