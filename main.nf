@@ -40,8 +40,8 @@ workflow {
                               if (!source_fasta.exists()) {
                                   error("FASTA file not found: ${source_fasta}")
                               }
-                              // Copy the file (overwrites if exists)
-                              Files.copy(source_fasta.toPath(), dest_fasta.toPath(), StandardCopyOption.REPLACE_EXISTING)
+                              // Copy the fasta file
+                              source_fasta.copyTo(dest_fasta)
     
                               return tuple(sample_name, dir, dest_fasta, "multimer")
                           }
