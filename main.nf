@@ -34,16 +34,8 @@ workflow {
                               def sample_name = dir.name
                               // find the appropriate fasta file
                               def source_fasta = file("${params.fastadir}/${sample_name}.fasta")
-                              def dest_fasta = file("${params.inputdir}/${sample_name}.fasta")
-
-                              // Check if FASTA file exists
-                              if (!source_fasta.exists()) {
-                                  error("FASTA file not found: ${source_fasta}")
-                              }
-                              // Copy the fasta file
-                              source_fasta.copyTo(dest_fasta)
     
-                              return tuple(sample_name, dir, dest_fasta, "multimer")
+                              return tuple(sample_name, dir, source_fasta, "multimer")
                           }
     
     Channel.from(params.model_indices.split(',').toList())

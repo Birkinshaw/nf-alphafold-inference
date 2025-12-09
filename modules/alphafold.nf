@@ -66,16 +66,21 @@ process ALPHAFOLD_Inference{
 
 
     input:
-    tuple val(fasta),path(fasta_file),val(preset),val(model_index)
+    tuple val(fasta),path(feature_dir),path(fasta_file),val(preset),val(model_index)
 
     script:
     """
+    mkdir -p ${fasta}/msas
+    cp -r ${feature_dir}/msas ${fasta}/
+    cp ${feature_dir}/*.pkl ${fasta}/
+    cp ${fasta_file} ${fasta}/
+
     alphafold  -o ./ -t $params.max_template_date \
-               -g  true \
-               -m $preset  \
-               -n $model_index \
-               -i $params.num_predictions \
-               -r $params.model_to_relax \
-               $fasta_file
+            -g  true \
+            -m $preset  \
+            -n $model_index \
+            -i $params.num_predictions \
+            -r $params.model_to_relax \
+            $fasta_file
     """
 }
