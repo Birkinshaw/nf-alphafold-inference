@@ -48,7 +48,7 @@ process ALPHAFOLD_Feature{
 
 process ALPHAFOLD_Inference{
     queue 'gpuq'
-    clusterOptions '--gres=gpu:A30:1 --nice'
+    clusterOptions '--gres=gpu:A30:1'
     errorStrategy 'ignore'
     label 'Alphafold2'
     tag "${fasta}"
@@ -66,7 +66,7 @@ process ALPHAFOLD_Inference{
 
 
     input:
-    tuple val(fasta),path(feature_dir),path(fasta_file),val(preset),val(model_index)
+    tuple val(fasta),val(feature_dir),val(fasta_file),val(preset),val(model_index)
 
     script:
     """
