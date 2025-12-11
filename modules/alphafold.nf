@@ -73,7 +73,7 @@ process ALPHAFOLD_Inference{
     mkdir -p ${fasta}/msas
     cp -r ${feature_dir}/msas ${fasta}/
     cp ${feature_dir}/*.pkl ${fasta}/
-    cp ${fasta_file} ${fasta}/
+    cp ${fasta_file} ${fasta}.fasta
 
     alphafold  -o ./ -t $params.max_template_date \
             -g  true \
@@ -81,6 +81,6 @@ process ALPHAFOLD_Inference{
             -n $model_index \
             -i $params.num_predictions \
             -r $params.model_to_relax \
-            $fasta_file
+            ${fasta}.fasta
     """
 }
