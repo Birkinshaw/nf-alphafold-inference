@@ -70,7 +70,7 @@ process ALPHAFOLD_Inference{
 
     script:
     """
-    module load alphafold/2.3.2.1
+    module load alphafold/2.3.2
 
     mkdir -p ${fasta}/msas
     cp -r ${feature_dir}/msas ${fasta}/
