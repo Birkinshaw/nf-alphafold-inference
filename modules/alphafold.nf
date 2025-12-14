@@ -48,7 +48,7 @@ process ALPHAFOLD_Feature{
 
 process ALPHAFOLD_Inference{
     queue 'gpuq'
-    clusterOptions '--gres=gpu:A30:1'
+    clusterOptions '--gres=gpu:A30:1 --nice'
     errorStrategy 'ignore'
     label 'Alphafold2'
     tag "${fasta}"
@@ -70,6 +70,8 @@ process ALPHAFOLD_Inference{
 
     script:
     """
+    module load alphafold/2.3.2.1
+
     mkdir -p ${fasta}/msas
     cp -r ${feature_dir}/msas ${fasta}/
     cp ${feature_dir}/*.pkl ${fasta}/
