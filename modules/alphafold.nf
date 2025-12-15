@@ -48,6 +48,9 @@ process ALPHAFOLD_Feature{
 
 process ALPHAFOLD_Inference{
     queue 'gpuq'
+    cpus 14
+    memory '100.GB'
+    time '5.h'
     clusterOptions '--gres=gpu:A30:1 --nice'
     errorStrategy 'ignore'
     label 'Alphafold2'
