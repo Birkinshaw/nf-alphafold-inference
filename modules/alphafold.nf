@@ -52,6 +52,7 @@ process ALPHAFOLD_Inference{
     memory '100.GB'
     time '5.h'
     clusterOptions '--gres=gpu:A30:1 --nice'
+    clusterOptions '--qos=bonus'
     errorStrategy 'ignore'
     label 'Alphafold2'
     tag "${fasta}"
